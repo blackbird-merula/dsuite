@@ -1,0 +1,26 @@
+{
+  "name": "@dsuite/dmap",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build:types": "tsc -p ./tsconfig.dist.json",
+    "build:esbuild": "esbuild src/**/*.ts --outdir=dist",
+    "build": "npm run build:types && npm run build:esbuild",
+    "test": "node --no-warnings --loader @esbuild-kit/esm-loader --test test/*.test.ts",
+    "lint": "biome ci"
+  },
+  "dependencies": {
+    "@dsuite/core": "*"
+  }
+}

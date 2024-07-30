@@ -1,0 +1,32 @@
+{
+  "name": "dsuite-monorepo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "npm run build:core && npm run build:dpath && npm run build:dmap && npm run build:dpack",
+    "build:core": "npm run build --workspace=packages/core",
+    "build:dpath": "npm run build --workspace=packages/dpath",
+    "build:dmap": "npm run build --workspace=packages/dmap",
+    "build:dpack": "npm run build --workspace=packages/dpack",
+    "link:all": "npm exec -w packages/* -- npm link",
+    "lint": "biome ci"
+  },
+  "dependencies": {
+    "@noble/hashes": "^1.4.0",
+    "ajv": "6.12.6",
+    "jams.js": "^0.0.10",
+    "kubo-rpc-client": "^4.1.1",
+    "multiformats": "^13.2.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.8.3",
+    "@esbuild-kit/esm-loader": "^2.6.5",
+    "@types/node": "^22.0.0",
+    "esbuild": "0.23.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.4.5"
+  },
+  "workspaces": ["packages/*"],
+  "trustedDependencies": ["@biomejs/biome"]
+}

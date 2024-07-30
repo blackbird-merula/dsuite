@@ -1,0 +1,36 @@
+{
+  "name": "@dsuite/core",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./config": {
+      "import": "./dist/config.js",
+      "types": "./dist/config.d.ts"
+    },
+    "./constants": {
+      "import": "./dist/constants.js",
+      "types": "./dist/constants.d.ts"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts"
+    }
+  },
+  "files": ["dist"],
+  "dependencies": {
+    "@noble/hashes": "*"
+  },
+  "scripts": {
+    "build:types": "tsc -p ./tsconfig.dist.json",
+    "build:esbuild": "esbuild src/**/*.ts --outdir=dist",
+    "build": "npm run build:types && npm run build:esbuild",
+    "test": "node --no-warnings --loader @esbuild-kit/esm-loader --test test/*.test.ts",
+    "lint": "biome ci"
+  }
+}

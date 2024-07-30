@@ -1,0 +1,56 @@
+{
+  "name": "@dsuite/dpack",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    "./cid": {
+      "import": "./dist/cid.js",
+      "types": "./dist/cid.d.ts"
+    },
+    "./load": {
+      "import": "./dist/load.js",
+      "types": "./dist/load.d.ts"
+    },
+    "./pack": {
+      "import": "./dist/pack.js",
+      "types": "./dist/pack.d.ts"
+    },
+    "./packBuilder": {
+      "import": "./dist/packBuilder.js",
+      "types": "./dist/packBuilder.d.ts"
+    },
+    "./prepare": {
+      "import": "./dist/prepare.js",
+      "types": "./dist/prepare.d.ts"
+    },
+    "./schema": {
+      "import": "./dist/schema.js",
+      "types": "./dist/schema.d.ts"
+    },
+    "./unpack": {
+      "import": "./dist/unpack.js",
+      "types": "./dist/unpack.d.ts"
+    },
+    "./validate": {
+      "import": "./dist/validate.js",
+      "types": "./dist/validate.d.ts"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build:types": "tsc -p ./tsconfig.dist.json",
+    "build:esbuild": "esbuild src/**/*.ts --outdir=dist",
+    "build": "npm run build:types && npm run build:esbuild",
+    "test": "node --no-warnings --loader @esbuild-kit/esm-loader --test test/*.test.ts",
+    "lint": "biome ci"
+  },
+  "dependencies": {
+    "@dsuite/core": "*",
+    "@dsuite/dmap": "*",
+    "@dsuite/dpath": "*",
+    "ajv": "*",
+    "kubo-rpc-client": "*",
+    "jams.js": "*"
+  }
+}
